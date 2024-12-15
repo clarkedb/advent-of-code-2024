@@ -47,10 +47,13 @@ def main():
         print(f"day {day} - part {part} [completed in {duration_ms:.4f} ms]")
         print(f">> {result}")
 
-    except ModuleNotFoundError:
-        print(f"Error: Module for Day {day} not found.", file=sys.stderr)
-    except AttributeError:
-        print(f"Error: Function for Day {day}, Part {part} not found.", file=sys.stderr)
+    except ModuleNotFoundError as e:
+        print(f"Error: module for day {day} not found - #{e}", file=sys.stderr)
+    except AttributeError as e:
+        print(
+            f"Error: function for day {day}, part {part} not found - #{e}",
+            file=sys.stderr,
+        )
 
 
 if __name__ == "__main__":
