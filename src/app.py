@@ -1,6 +1,7 @@
 import argparse
 import importlib
 import sys
+from time import time
 
 
 def main():
@@ -36,22 +37,20 @@ def main():
         module_name = f"{day}"
         module = importlib.import_module(module_name)
 
-        # Dynamically get the function for the given day and part
         function_name = f"part{part}"
         challenge_function = getattr(module, function_name)
 
-        # Call the function with the input file
+        start = time()
         result = challenge_function(input_file)
+        duration_ms = 1000 * (time() - start)
 
-        print(f"Result for day {day} - part {part}:")
+        print(f"day {day} - part {part} [completed in {duration_ms:.4f} ms]")
         print(f">> {result}")
 
     except ModuleNotFoundError:
         print(f"Error: Module for Day {day} not found.", file=sys.stderr)
     except AttributeError:
         print(f"Error: Function for Day {day}, Part {part} not found.", file=sys.stderr)
-    except Exception as e:
-        print(f"An error occurred: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
