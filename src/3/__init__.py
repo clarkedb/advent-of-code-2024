@@ -18,4 +18,21 @@ def part1(input: TextIO) -> int:
 
 
 def part2(input: TextIO) -> int:
-    raise NotImplementedError("day 3 part 2 not implemented")
+    product_sum = 0
+
+    pattern = r"(mul\((\d{1,3}),(\d{1,3})\))|(do\(\))|(don't\(\))"
+    instructions = input.read()
+    enabled = True
+
+    matches = re.finditer(pattern, instructions, re.MULTILINE)
+    for match in matches:
+        a, b, do, dont = match.groups()[1:]
+        if do:
+            enabled = True
+        elif dont:
+            enabled = False
+        elif enabled:
+            product = int(a) * int(b)
+            product_sum += product
+
+    return product_sum
