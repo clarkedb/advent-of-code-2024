@@ -162,3 +162,6 @@ cython_debug/
 
 # input files
 input/*.txt
+
+# system files
+.DS_Store
