@@ -20,7 +20,7 @@ def part1(input: TextIO) -> int:
 
     valid_coordinates = lambda p: all([c >= 0 and c < n for c in p])
 
-    for k, antenna in antenna_by_type.items():
+    for antenna in antenna_by_type.values():
         for node1, node2 in combinations(antenna, 2):
             delta_x = node1[0] - node2[0]
             delta_y = node1[1] - node2[1]
